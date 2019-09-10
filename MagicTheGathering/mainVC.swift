@@ -111,7 +111,9 @@ extension mainVC: UITableViewDataSource {
                 }
                 cell.cardImage.image = nil
                 if imagePath.count > 0 {
-                    networkService.placeImage(imagePath: imagePath, cardImage: cell.cardImage)
+                    networkService.placeImage(imagePath: imagePath, completion: { [unowned cell]  (image) -> Void in
+                        cell.cardImage.image = image
+                    })
                 } else {
                     cell.cardImage.image = noPhotoImage
                 }

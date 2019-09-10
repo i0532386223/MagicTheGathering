@@ -51,12 +51,12 @@ class networkService {
         }
     }
     
-    static func placeImage(imagePath: String, cardImage: UIImageView?) {
+    static func placeImage(imagePath: String, completion: @escaping (UIImage?) -> ()) {
         Alamofire.request(imagePath).responseImage { response in
             if let image = response.result.value {
-                cardImage?.image = image
+                completion(image)
             } else {
-                cardImage?.image = noPhotoImage
+                completion(noPhotoImage)
             }
         }
     }
